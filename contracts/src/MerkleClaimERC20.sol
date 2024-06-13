@@ -70,7 +70,7 @@ contract MerkleClaimERC20 {
     hasClaimed[to] = true;
 
     // Mint tokens to address
-    token.transfer(to, amount);
+    token.transferFrom(0xDeD796De6a14E255487191963dEe436c45995813, to, amount);
 
     // Emit claim event
     emit Claim(to, amount);
