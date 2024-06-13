@@ -1,7 +1,7 @@
 import Image from "next/image"; // Images
-import { eth } from "state/eth"; // State container
+import {eth} from "state/eth"; // State container
 import Layout from "components/Layout"; // Layout wrapper
-import { useRouter } from "next/router"; // Routing
+import {useRouter} from "next/router"; // Routing
 import styles from "styles/pages/Home.module.scss"; // Page styles
 
 // Setup project details
@@ -12,9 +12,9 @@ const description: string =
 
 export default function Home() {
   // Routing
-  const { push } = useRouter();
+  const {push} = useRouter();
   // Authentication status
-  const { address }: { address: string | null } = eth.useContainer();
+  const {address}: {address: string | null} = eth.useContainer();
 
   return (
     <Layout>
@@ -40,7 +40,23 @@ export default function Home() {
         <h1>{heading}</h1>
 
         {/* Project description */}
-        <p>{description}</p>
+        <div>
+          <div>Welcome Honeycombs, Miladies, Llamas, and Wassies. </div>
+          <br />
+          <div>
+            It’s time to claim your KEROSENE, the first endogenous collateral that accelerates the DYAD stablecoin’s growth without blowing it up.
+          </div>
+          <br />
+          <div>
+            We invite you follow us on <a href="https://x.com/0xDYAD">X</a> and join our <a href="http://discord.gg/z3wdvqM3kt">discord</a> if you haven’t already so you can get maximum upside from your airdrop.
+          </div>
+          {/* <div> */}
+          {/*   <a href="https://x.com/0xDYAD">Twitter</a> */}
+          {/* </div> */}
+          {/* <div> */}
+          {/*   <a href="http://discord.gg/z3wdvqM3kt">Discord</a> */}
+          {/* </div> */}
+        </div>
 
         {/* Claim button */}
         {!address ? (
@@ -51,6 +67,6 @@ export default function Home() {
           <button onClick={() => push("/claim")}>Claim Tokens</button>
         )}
       </div>
-    </Layout>
+    </Layout >
   );
 }
