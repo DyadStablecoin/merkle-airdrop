@@ -8,7 +8,6 @@ type IConfig = {
 const config: IConfig = {
   decimals: 18,
   airdrop: {
-    "0x7F6b139DD94873Aa145509Af4fA33Fd1dB16bE8e": 1, // just for testing!!!
     "0x3fc232c07dcf2759af9270f0a7d3856b9e8cccba": 3500,
     "0x60559b4cc92292b589ded75295f5331adcc69e04": 3500,
     "0x7bfee91193d9df2ac0bfe90191d40f23c773c060": 3500,

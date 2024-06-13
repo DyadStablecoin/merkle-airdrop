@@ -3,16 +3,16 @@ pragma solidity >=0.8.0;
 
 /// ============ Imports ============
 
-import { ERC20 } from "@solmate/tokens/ERC20.sol"; // Solmate: ERC20
-import { MerkleProof } from "@openzeppelin/utils/cryptography/MerkleProof.sol"; // OZ: MerkleProof
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol"; // OZ: MerkleProof
 
 /// @title MerkleClaimERC20
 /// @notice ERC20 claimable by members of a merkle tree
 /// @author Anish Agnihotri <contact@anishagnihotri.com>
 /// @dev Solmate ERC20 includes unused _burn logic that can be removed to optimize deployment cost
-contract MerkleClaimERC20 is ERC20 {
-
+contract MerkleClaimERC20 {
   /// ============ Immutable storage ============
+  ERC20 public immutable token;
 
   /// @notice ERC20-claimee inclusion root
   bytes32 public immutable merkleRoot;
@@ -31,17 +31,12 @@ contract MerkleClaimERC20 is ERC20 {
 
   /// ============ Constructor ============
 
-  /// @notice Creates a new MerkleClaimERC20 contract
-  /// @param _name of token
-  /// @param _symbol of token
-  /// @param _decimals of token
-  /// @param _merkleRoot of claimees
+
   constructor(
-    string memory _name,
-    string memory _symbol,
-    uint8 _decimals,
+    address _token, 
     bytes32 _merkleRoot
-  ) ERC20(_name, _symbol, _decimals) {
+  ) {
+    token      = ERC20(_token);
     merkleRoot = _merkleRoot; // Update root
   }
 
@@ -71,7 +66,7 @@ contract MerkleClaimERC20 is ERC20 {
     hasClaimed[to] = true;
 
     // Mint tokens to address
-    _mint(to, amount);
+    token.transferFrom(0xDeD796De6a14E255487191963dEe436c45995813, to, amount);
 
     // Emit claim event
     emit Claim(to, amount);
