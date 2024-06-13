@@ -3,8 +3,8 @@ pragma solidity >=0.8.0;
 
 /// ============ Imports ============
 
-import { ERC20 }       from "@solmate/tokens/ERC20.sol"; // Solmate: ERC20
-import { MerkleProof } from "@openzeppelin/utils/cryptography/MerkleProof.sol"; // OZ: MerkleProof
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol"; // OZ: MerkleProof
 
 /// @title MerkleClaimERC20
 /// @notice ERC20 claimable by members of a merkle tree
@@ -31,16 +31,12 @@ contract MerkleClaimERC20 {
 
   /// ============ Constructor ============
 
-  /// @notice Creates a new MerkleClaimERC20 contract
-  /// @param _name of token
-  /// @param _symbol of token
-  /// @param _decimals of token
-  /// @param _merkleRoot of claimees
+
   constructor(
     address _token, 
     bytes32 _merkleRoot
-  ) ERC20(_name, _symbol, _decimals) {
-    token      = address(_token);
+  ) {
+    token      = ERC20(_token);
     merkleRoot = _merkleRoot; // Update root
   }
 
